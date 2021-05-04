@@ -13,7 +13,7 @@ def read_jsonl(file_path):
             except ValueError:
                 continue
 
-path = "../data/debateorg.jsonl"
+path = "/data/touche-macbeth/preprocessed_debateorg.jsonl"
 d = read_jsonl(path)
 
 lines = []
