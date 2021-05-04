@@ -35,7 +35,7 @@ index_name = "debateorg-preprocessed"
 
 es.indices.create(index=index_name, ignore=[400]) 
 
-for i,row in enumerate(preprocessed_):
+for i,row in enumerate(lines):
     if not i%10000:
         print("Lines Indexed: ", i)
     response = es.index(
