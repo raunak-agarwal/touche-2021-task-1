@@ -19,14 +19,14 @@ d = read_jsonl(path)
 lines = []
 i = 0
 while True:
-	try:
-		lines.append(next(d))
-		i=i+1
-		if i%100000 == 0:
-			print("Lines Read: ", i)
-	except Exception as e:
-		print(e)
-		break
+    try:
+        lines.append(next(d))
+        i=i+1
+        if i%100000 == 0:
+            print("Lines Read: ", i)
+    except Exception as e:
+        print(e)
+        break
 
 #Elasticsearch
 
