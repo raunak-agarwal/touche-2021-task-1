@@ -14,6 +14,7 @@ tag: A tag that identifies your group and the method you used to produce the run
 """
 
 import argparse
+import sys
 
 import xmltodict
 import pandas as pd
@@ -64,14 +65,14 @@ def search_all_topics(index_, topics_dict, top_k = 25):
 if __name__ == "__main__":
     args = parse_args()
     input_path = args.i
-    print("Input Path:", input_path)
+    sys.stdout.write("Input Path:"+input_path)
 
     pretrained_path = args.p
     pretrained_model_name = pretrained_path
     model = CrossEncoder(pretrained_model_name, max_length = 504)
 
     topics_dict = read_xml(input_path+"topics.xml")
-    print(topics_dict)
+    # sys.stdout.write(topics_dict)
 
     sentence_pairs_dict = search_all_topics(index_name, topics_dict, 50)
 
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     for k,v in sentence_pairs_dict.items():
         df = pd.DataFrame(v,columns=['qid','doc','Question','original_text'])
         qa_pairs = list(df[['Question','original_text']].itertuples(index=False,name=None))
-        similarity_scores = model.predict(qa_pairs)
+        similarity_scores = 0 #model.predict(qa_pairs)
         df['score'] = similarity_scores
         df = df.sort_values(by=['score'],ascending=False)
         df['rank'] = df['score'].rank(method="first",ascending=False)
@@ -93,7 +94,7 @@ if __name__ == "__main__":
             output_string = qid + " Q0 " + doc + " " +\
                     str(rank) + " " + str(score) + " macbethPretrainedBaseline"
             output_lines.append(output_string)
-    print("Total Lines Output", len(output_lines))
+    sys.stdout.write("Total Lines Output" +len(output_lines))
 
     output_path = args.o + "run.txt"
 
