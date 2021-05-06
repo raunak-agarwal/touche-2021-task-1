@@ -24,14 +24,11 @@ from sentence_transformers import CrossEncoder
 es = Elasticsearch()
 index_name = "debateorg-preprocessed"
 
-pretrained_model_name = "cross-encoder/ms-marco-MiniLM-L-6-v2"
-model = CrossEncoder(pretrained_model_name, max_length = 504)
-
-
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", help="Input Directory", type=str)
     parser.add_argument("-o", help="Output Directory String", type=str)
+    parser.add_argument("-p", help="Pretrained Model Path", type=str)
     argv = parser.parse_args()
     return argv
 
@@ -68,6 +65,10 @@ if __name__ == "__main__":
     args = parse_args()
     input_path = args.i
     print("Input Path:", input_path)
+
+    pretrained_path = args.p
+    pretrained_model_name = pretrained_path
+    model = CrossEncoder(pretrained_model_name, max_length = 504)
 
     topics_dict = read_xml(input_path+"topics.xml")
     print(topics_dict)
