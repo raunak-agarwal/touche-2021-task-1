@@ -91,6 +91,7 @@ if __name__ == "__main__":
                     str(rank) + " " + str(score) + " macbethPretrainedBaseline"
             output_lines.append(output_string)
 
-    with open(args.o, 'w') as writefile:
+    output_path = args.o + "run.txt"
+    with open(output_path, 'w') as writefile:
         for line in output_lines:
             writefile.writelines(line+"\n")
