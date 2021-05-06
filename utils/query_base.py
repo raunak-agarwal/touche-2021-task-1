@@ -93,4 +93,4 @@ if __name__ == "__main__":
 
     with open(args.o, 'w') as writefile:
         for line in output_lines:
-            line.write()
+            writefile.writelines(line+"\n")
