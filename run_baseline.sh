@@ -1,4 +1,4 @@
-while getopts u:a:f: flag
+while getopts i:o: flag
 do
     case "${flag}" in
         i) InputDataset=${OPTARG};;
