@@ -30,8 +30,8 @@ model = CrossEncoder(pretrained_model_name, max_length = 504)
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-input", help="Input Directory", type=str)
-    parser.add_argument("-output", help="Output Directory String", type=str)
+    parser.add_argument("-i", help="Input Directory", type=str)
+    parser.add_argument("-o", help="Output Directory String", type=str)
     argv = parser.parse_args()
     return argv
 
@@ -66,7 +66,7 @@ def search_all_topics(index_, topics_dict, top_k = 25):
 
 if __name__ == "__main__":
     args = parse_args()
-    input_path = args.input
+    input_path = args.i
     
     topics_dict = read_xml(input_path+"topics.xml")
 
@@ -90,7 +90,7 @@ if __name__ == "__main__":
             output_string = qid + " Q0 " + doc + " " +\
                     str(rank) + " " + str(score) + " macbethPretrainedBaseline"
             output_lines.append(output_string)
-            
-    with open(args.outfile, 'w') as writefile:
+
+    with open(args.o, 'w') as writefile:
         for line in output_lines:
             line.write()
