@@ -1,7 +1,7 @@
 certifi==2020.12.5
 chardet==4.0.0
 click==7.1.2
-dataclasses==0.8
+git+git://github.com/ericvsmith/dataclasses@0.8#dataclasses
 elasticsearch==7.12.1
 filelock==3.0.12
 gdown==3.13.0
