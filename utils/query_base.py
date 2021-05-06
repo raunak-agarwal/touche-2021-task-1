@@ -67,8 +67,10 @@ def search_all_topics(index_, topics_dict, top_k = 25):
 if __name__ == "__main__":
     args = parse_args()
     input_path = args.i
-    
+    print("Input Path:", input_path)
+
     topics_dict = read_xml(input_path+"topics.xml")
+    print(topics_dict)
 
     sentence_pairs_dict = search_all_topics(index_name, topics_dict, 50)
 
@@ -90,8 +92,11 @@ if __name__ == "__main__":
             output_string = qid + " Q0 " + doc + " " +\
                     str(rank) + " " + str(score) + " macbethPretrainedBaseline"
             output_lines.append(output_string)
+    print("Total Lines Output", len(output_lines))
 
     output_path = args.o + "run.txt"
+
     with open(output_path, 'w') as writefile:
         for line in output_lines:
             writefile.writelines(line+"\n")
+    print("Successful Write!")
