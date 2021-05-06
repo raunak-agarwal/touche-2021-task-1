@@ -22,8 +22,9 @@ import pandas as pd
 from elasticsearch import Elasticsearch
 from sentence_transformers import CrossEncoder
 
-es = Elasticsearch()
+es = Elasticsearch([{'host': 'es', 'port': 9200}])
 index_name = "debateorg-preprocessed"
+sys.stdout.write(es.info())
 
 def parse_args():
     parser = argparse.ArgumentParser()
