@@ -68,7 +68,7 @@ if __name__ == "__main__":
     args = parse_args()
     input_path = args.input
     
-    topics_dict = read_xml(input_path+"topics-task1.xml")
+    topics_dict = read_xml(input_path+"topics.xml")
 
     sentence_pairs_dict = search_all_topics(index_name, topics_dict, 50)
 
@@ -90,9 +90,7 @@ if __name__ == "__main__":
             output_string = qid + " Q0 " + doc + " " +\
                     str(rank) + " " + str(score) + " macbethPretrainedBaseline"
             output_lines.append(output_string)
+            
     with open(args.outfile, 'w') as writefile:
         for line in output_lines:
             line.write()
-
-    
-    run_baseline(output_dir = args.o, input_dir = args.i, input_file = args.inp_file)
